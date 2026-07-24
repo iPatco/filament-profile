@@ -15,11 +15,11 @@ use Filament\Tables\TablesServiceProvider;
 use Filament\Widgets\WidgetsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Ipatco\FilamentProfile\FilamentProfileServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
-use Ipatco\FilamentProfile\FilamentProfileServiceProvider;
 
 class TestCase extends Orchestra
 {

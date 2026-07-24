@@ -149,8 +149,6 @@ class FilamentProfilePlugin implements Plugin
      *
      * Prefer Filament's class-based icons, such as Heroicon::OutlinedUserCircle.
      * Strings and Htmlable values are also supported.
-     *
-     * @param  string | BackedEnum | Htmlable | Closure | null  $icon
      */
     public function icon(string | BackedEnum | Htmlable | Closure | null $icon): static
     {

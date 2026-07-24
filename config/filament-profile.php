@@ -1,5 +1,7 @@
 <?php
 
+use Ipatco\FilamentProfile\Pages\EditProfile;
+
 return [
 
     /*
@@ -12,7 +14,7 @@ return [
     |
     */
 
-    'profile_page' => Ipatco\FilamentProfile\Pages\EditProfile::class,
+    'profile_page' => EditProfile::class,
 
     /*
     |--------------------------------------------------------------------------
