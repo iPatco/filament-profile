@@ -9,10 +9,9 @@ use Filament\Support\Assets\Js;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentIcon;
 use Illuminate\Filesystem\Filesystem;
-use Ipatco\FilamentProfile\Commands\FilamentProfileCommand;
+use Ipatco\FilamentProfile\Commands\FilamentProfileInstallCommand;
 use Ipatco\FilamentProfile\Testing\TestsFilamentProfile;
 use Livewire\Features\SupportTesting\Testable;
-use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -30,14 +29,7 @@ class FilamentProfileServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package->name(static::$name)
-            ->hasCommands($this->getCommands())
-            ->hasInstallCommand(function (InstallCommand $command) {
-                $command
-                    ->publishConfigFile()
-                    ->publishMigrations()
-                    ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('ipatco/filament-profile');
-            });
+            ->hasCommands($this->getCommands());
 
         $configFileName = $package->shortName();
 
@@ -78,6 +70,10 @@ class FilamentProfileServiceProvider extends PackageServiceProvider
 
         // Handle Stubs
         if (app()->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../stubs/ProfileInformationForm.php.stub' => app_path('Filament/Profile/ProfileInformationForm.php'),
+            ], 'filament-profile-form');
+
             foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
                 $this->publishes([
                     $file->getRealPath() => base_path("stubs/filament-profile/{$file->getFilename()}"),
@@ -112,7 +108,7 @@ class FilamentProfileServiceProvider extends PackageServiceProvider
     protected function getCommands(): array
     {
         return [
-            FilamentProfileCommand::class,
+            FilamentProfileInstallCommand::class,
         ];
     }
 

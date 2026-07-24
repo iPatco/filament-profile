@@ -13,6 +13,7 @@ use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
 use Ipatco\FilamentProfile\Pages\EditProfile;
+use Ipatco\FilamentProfile\Widgets\AccountWidget;
 use UnitEnum;
 
 class FilamentProfilePlugin implements Plugin
@@ -44,6 +45,8 @@ class FilamentProfilePlugin implements Plugin
 
     protected bool | Closure | null $isSimpleProfile = null;
 
+    protected bool | Closure | null $hasAccountWidget = null;
+
     public function getId(): string
     {
         return 'filament-profile';
@@ -55,6 +58,12 @@ class FilamentProfilePlugin implements Plugin
             $this->getProfilePage(),
             isSimple: $this->isSimpleProfile(),
         );
+
+        if ($this->hasAccountWidget()) {
+            $panel->widgets([
+                AccountWidget::class,
+            ]);
+        }
 
         if ($this->isHidden()) {
             $panel->userMenuItems([
@@ -240,14 +249,36 @@ class FilamentProfilePlugin implements Plugin
     /**
      * Use Filament's simple layout for the profile page.
      *
-     * When null, a simple layout is used for dropdown-only mode,
-     * and the full panel layout is used when the side nav is enabled.
+     * Defaults to false so the panel sidebar stays visible.
+     * Pass true only when you want the compact auth-style layout.
      */
     public function simpleProfile(bool | Closure | null $condition = true): static
     {
         $this->isSimpleProfile = $condition;
 
         return $this;
+    }
+
+    /**
+     * Use the package account widget on the dashboard.
+     *
+     * Adds a Profile button before Sign out on the welcome card.
+     * Opt in explicitly — the widget is not registered unless you call this.
+     * Remove Filament\Widgets\AccountWidget from your panel widgets to avoid duplicates.
+     */
+    public function accountWidget(bool | Closure $condition = true): static
+    {
+        $this->hasAccountWidget = $condition;
+
+        return $this;
+    }
+
+    /**
+     * Determine whether the package account widget should be registered.
+     */
+    public function hasAccountWidget(): bool
+    {
+        return (bool) $this->evaluate($this->hasAccountWidget ?? false);
     }
 
     /**
@@ -356,6 +387,8 @@ class FilamentProfilePlugin implements Plugin
 
     /**
      * Determine whether the profile page uses the simple layout.
+     *
+     * Defaults to false so the panel sidebar remains visible.
      */
     public function isSimpleProfile(): bool
     {
@@ -363,13 +396,7 @@ class FilamentProfilePlugin implements Plugin
             return (bool) $this->evaluate($this->isSimpleProfile);
         }
 
-        $config = config('filament-profile.simple_profile');
-
-        if ($config !== null) {
-            return (bool) $config;
-        }
-
-        return $this->isShowingOnDropdown() && ! $this->isShowingOnSideNav();
+        return (bool) config('filament-profile.simple_profile', false);
     }
 
     /**

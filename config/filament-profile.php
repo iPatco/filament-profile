@@ -1,5 +1,6 @@
 <?php
 
+use Ipatco\FilamentProfile\Forms\ProfileInformationForm;
 use Ipatco\FilamentProfile\Pages\EditProfile;
 
 return [
@@ -18,15 +19,28 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Simple profile layout
+    | Profile information form
     |--------------------------------------------------------------------------
     |
-    | When null, the layout is chosen automatically from the menu location
-    | (simple for dropdown only; full layout with sidebar otherwise).
-    | Override via FilamentProfilePlugin::make()->simpleProfile(...), or here.
+    | Class that builds the fields in the Profile information section.
+    | Run `php artisan filament-profile:install` to publish an editable copy
+    | to app/Filament/Profile/ProfileInformationForm.php, then point this
+    | config at that class (the install command does this for you).
     |
     */
 
-    'simple_profile' => null,
+    'profile_information_form' => ProfileInformationForm::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Simple profile layout
+    |--------------------------------------------------------------------------
+    |
+    | When false (default), the profile page uses the full panel layout with
+    | the sidebar. Set true for Filament's compact auth-style layout.
+    |
+    */
+
+    'simple_profile' => false,
 
 ];
