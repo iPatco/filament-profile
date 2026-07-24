@@ -262,6 +262,7 @@ class FilamentProfilePlugin implements Plugin
      * Use the package account widget on the dashboard.
      *
      * Adds a Profile button before Sign out on the welcome card.
+     * Opt in explicitly — the widget is not registered unless you call this.
      * Remove Filament\Widgets\AccountWidget from your panel widgets to avoid duplicates.
      */
     public function accountWidget(bool | Closure $condition = true): static
@@ -276,7 +277,7 @@ class FilamentProfilePlugin implements Plugin
      */
     public function hasAccountWidget(): bool
     {
-        return (bool) $this->evaluate($this->hasAccountWidget ?? true);
+        return (bool) $this->evaluate($this->hasAccountWidget ?? false);
     }
 
     /**

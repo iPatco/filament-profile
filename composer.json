@@ -1,6 +1,6 @@
 {
     "name": "ipatco/filament-profile",
-    "description": "Must have package for Filament",
+    "description": "Breeze-style user profile for Filament panels — profile info, password, browser sessions, and account deletion.",
     "keywords": [
         "iPatco",
         "laravel",
