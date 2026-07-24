@@ -55,7 +55,7 @@ class FilamentProfileInstallCommand extends Command
 
         $updated = preg_replace(
             "/('profile_information_form'\\s*=>\\s*)([^,\\n]+)/",
-            "$1\\App\\Filament\\Profile\\ProfileInformationForm::class",
+            '$1\\App\\Filament\\Profile\\ProfileInformationForm::class',
             $contents,
             1,
         );
