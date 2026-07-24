@@ -4,6 +4,7 @@ namespace Ipatco\FilamentProfile\Pages;
 
 use DanHarrin\LivewireRateLimiting\Exceptions\TooManyRequestsException;
 use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Auth\Pages\EditProfile as BaseEditProfile;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
@@ -87,7 +88,7 @@ class EditProfile extends BaseEditProfile
      * Resolved from the class configured in `filament-profile.profile_information_form`.
      * Publish and edit that class with `php artisan filament-profile:install`.
      *
-     * @return array<Component|Action|\Filament\Actions\ActionGroup>
+     * @return array<Component|Action|ActionGroup>
      */
     public function getProfileInformationFormComponents(): array
     {

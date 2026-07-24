@@ -13,6 +13,7 @@ use Filament\Support\Concerns\EvaluatesClosures;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
 use Ipatco\FilamentProfile\Pages\EditProfile;
+use Ipatco\FilamentProfile\Widgets\AccountWidget;
 use UnitEnum;
 
 class FilamentProfilePlugin implements Plugin
@@ -60,7 +61,7 @@ class FilamentProfilePlugin implements Plugin
 
         if ($this->hasAccountWidget()) {
             $panel->widgets([
-                \Ipatco\FilamentProfile\Widgets\AccountWidget::class,
+                AccountWidget::class,
             ]);
         }
 
