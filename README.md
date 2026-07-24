@@ -4,6 +4,10 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/ipatco/filament-profile.svg?style=flat-square)](https://packagist.org/packages/ipatco/filament-profile)
 [![License](https://img.shields.io/github/license/ipatco/filament-profile?style=flat-square)](LICENSE.md)
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/iPatco/filament-profile/main/resources/images/screenshot.png" alt="Filament Profile screenshot" />
+</p>
+
 A ready-made **user profile page** for your Filament panel — the kind of account settings screen most apps need, without building it from scratch.
 
 Inspired by Laravel Breeze and Jetstream, built to feel at home in Filament.
