@@ -1,6 +1,7 @@
 <?php
 
-// translations for Ipatco/FilamentProfile
 return [
-    //
+    'menu' => [
+        'label' => 'Profile',
+    ],
 ];
