@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Ipatco\FilamentProfile\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class FilamentProfileCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'filament-profile';
 
     public $description = 'My command';
 
